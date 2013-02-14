@@ -227,8 +227,8 @@ static int calib_start_conv(struct pm8xxx_ccadc_chip *chip,
 			break;
 	}
 	if (i == ADC_WAIT_COUNT) {
-		pr_err("waited too long for offset eoc returning -EBUSY\n");
-		return -EBUSY;
+		pr_err("waited too long for offset eoc\n");
+		return rc;
 	}
 
 	rc = pm8xxx_readb(chip->dev->parent, ADC_ARB_SECP_DATA0, &data_lsb);
@@ -562,7 +562,7 @@ static int ccadc_get_rsense_voltage(int *voltage_uv)
 
 int pm8xxx_ccadc_get_battery_current(int *bat_current_ua)
 {
-	int voltage_uv, rc;
+	int voltage_uv = 0, rc;
 
 	rc = ccadc_get_rsense_voltage(&voltage_uv);
 	if (rc) {

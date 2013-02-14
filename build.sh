@@ -1,7 +1,7 @@
-CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-eabi-4.6/bin/arm-eabi-
+CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-eabi-linaro-4.7/bin/arm-eabi-
 INITRAMFS_DIR=ramdisk.gz
 KERNEL_NAME=AKToronto-Canuck
-KERNEL_VNUMBER=1.6
+KERNEL_VNUMBER=2.0
 
 # DO NOT MODIFY BELOW THIS LINE
 CURRENT_DIR=`pwd`
