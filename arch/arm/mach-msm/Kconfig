@@ -2344,6 +2344,13 @@ config ANDROID_RAM_CONSOLE_APPEND_PMIC_STATUS_BITS
 	  Append PMIC status bits to end of /proc/last_kmsg for
 	  checking the boot / reset reason in detail
 
+config FORCE_FAST_CHARGE
+	bool "Force AC charge mode at will"  
+	default y
+	help
+  	  A simple sysfs interface to force adapters that
+	  are detected as USB to charge as AC.
+
 config MSM_MPDEC
         bool "Enable kernel based mpdecision"
    depends on MSM_SMP

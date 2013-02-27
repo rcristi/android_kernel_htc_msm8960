@@ -1,7 +1,7 @@
 CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-eabi-linaro-4.7/bin/arm-eabi-
 INITRAMFS_DIR=ramdisk.gz
 KERNEL_NAME=AKToronto-Canuck
-KERNEL_VNUMBER=2.2
+KERNEL_VNUMBER=2.3
 
 # DO NOT MODIFY BELOW THIS LINE
 CURRENT_DIR=`pwd`
@@ -33,5 +33,5 @@ make ARCH=arm -j$NB_CPU CROSS_COMPILE=$CROSS_COMPILE
 # Make boot.img
 #echo "Making boot.img"
 #cp arch/arm/boot/zImage .
-#./mkbootimg --kernel zImage --ramdisk $INITRAMFS_DIR --base 80400000 --ramdiskaddr 81800000 --cmdline console=ttyHSL0,115200,n8 -o boot.img
-#echo "Done."
+#./mkbootimg --kernel zImage --ramdisk $INITRAMFS_DIR --base 80400000 --ramdiskaddr 82000000 --cmdline console=ttyHSL0,115200,n8 -o boot.img
+echo "Done."
