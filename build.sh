@@ -1,4 +1,4 @@
-CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-eabi-linaro-4.8/bin/arm-eabi-
+CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-cortex_a15/bin/arm-cortex_a15-linux-gnueabi-
 INITRAMFS_DIR=ramdisk.gz
 KERNEL_NAME=AKToronto-IronBorn
 KERNEL_VNUMBER=0.1
