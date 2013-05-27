@@ -133,3 +133,4 @@ extern int zram_init_device(struct zram *zram);
 extern void __zram_reset_device(struct zram *zram);
 
 #endif
+
