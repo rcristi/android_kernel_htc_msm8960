@@ -1,9 +1,7 @@
 CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-cortex_a15/bin/arm-cortex_a15-linux-gnueabi-
-INITRAMFS_DIR=ramdisk.gz
-KERNEL_NAME=IronBorn
+# INITRAMFS_DIR=ramdisk.gz
+KERNEL_NAME=-IronBorn-
 KERNEL_VNUMBER=0.5
-export LOCALVERSION="IronBorn-0.5"
-export KBUILD_BUILD_VERSION="0.5"
 
 # DO NOT MODIFY BELOW THIS LINE
 CURRENT_DIR=`pwd`
