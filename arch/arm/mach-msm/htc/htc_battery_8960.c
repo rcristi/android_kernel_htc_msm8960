@@ -42,6 +42,7 @@
 
 #include <linux/fastchg.h> 
 
+
 #define HTC_BATT_CHG_DIS_BIT_EOC	(1)
 #define HTC_BATT_CHG_DIS_BIT_ID		(1<<1)
 #define HTC_BATT_CHG_DIS_BIT_TMP	(1<<2)
@@ -391,8 +392,14 @@ int htc_charger_event_notify(enum htc_charger_event event)
 		latest_chg_src = CHARGER_BATTERY;
 		htc_batt_schedule_batt_info_update();
 		break;
-	case HTC_CHARGER_EVENT_SRC_USB:
-		latest_chg_src = CHARGER_USB;
+	case HTC_CHARGER_EVENT_SRC_USB: 
+		if (force_fast_charge == 1) {
+	  	      printk("[FASTCHARGE] Forcing CHARGER_AC");
+		      latest_chg_src = CHARGER_AC;
+		} else {
+		      printk("[FASTCHARGE] NOT set, using normal CHARGER_USB");
+		      latest_chg_src = CHARGER_USB;
+	        } 
 		htc_batt_schedule_batt_info_update();
 		break;
 	case HTC_CHARGER_EVENT_SRC_AC:
