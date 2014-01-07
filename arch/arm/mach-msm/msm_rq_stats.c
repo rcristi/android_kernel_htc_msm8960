@@ -37,6 +37,24 @@
 #define DEFAULT_RQ_POLL_JIFFIES 1
 #define DEFAULT_DEF_TIMER_JIFFIES 5
 
+#ifdef CONFIG_MSM_MPDEC
+unsigned int get_rq_info(void)
+{
+        unsigned long flags = 0;
+        unsigned int rq = 0;
+
+        spin_lock_irqsave(&rq_lock, flags);
+
+        rq = rq_info.rq_avg;
+        rq_info.rq_avg = 0;
+
+        spin_unlock_irqrestore(&rq_lock, flags);
+
+        return rq;
+}
+EXPORT_SYMBOL(get_rq_info);
+#endif
+
 struct notifier_block freq_transition;
 struct notifier_block cpu_hotplug;
 struct notifier_block freq_policy;
@@ -207,24 +225,6 @@ static int cpu_hotplug_handler(struct notifier_block *nb,
 
 	return NOTIFY_OK;
 }
-
-#ifdef CONFIG_MSM_MPDEC
-unsigned int get_rq_info(void)
-{
-        unsigned long flags = 0;
-        unsigned int rq = 0;
-
-        spin_lock_irqsave(&rq_lock, flags);
-
-        rq = rq_info.rq_avg;
-        rq_info.rq_avg = 0;
-
-        spin_unlock_irqrestore(&rq_lock, flags);
-
-        return rq;
-}
-EXPORT_SYMBOL(get_rq_info);
-#endif
 
 static int system_suspend_handler(struct notifier_block *nb,
 				unsigned long val, void *data)
