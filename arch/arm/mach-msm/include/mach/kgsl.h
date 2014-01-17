@@ -22,7 +22,7 @@
 #define KGSL_CLK_AXI	0x00000020
 
 #ifdef CONFIG_GPU_OVERCLOCK
-#define KGSL_MAX_PWRLEVELS 8
+#define KGSL_MAX_PWRLEVELS 6
 #else 
 #define KGSL_MAX_PWRLEVELS 5
 #endif
