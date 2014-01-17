@@ -1,9 +1,7 @@
 CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-cortex_a15/bin/arm-cortex_a15-linux-gnueabi-
 INITRAMFS_DIR=ramdisk.gz
-KERNEL_NAME=IronBorn
+KERNEL_NAME=-IronBorn-
 KERNEL_VNUMBER=0.5
-export LOCALVERSION="IronBorn-0.5"
-export KBUILD_BUILD_VERSION="0.5"
 
 # DO NOT MODIFY BELOW THIS LINE
 CURRENT_DIR=`pwd`
@@ -24,13 +22,18 @@ else
 fi
 
 
+export KBUILD_BUILD_VERSION="${KERNEL_NAME}-v${KERNEL_VNUMBER}"
+
+
 make $1
 echo "Building kernel ${KBUILD_BUILD_VERSION} with configuration $CONFIG"
 make ARCH=arm -j$NB_CPU CROSS_COMPILE=$CROSS_COMPILE
 
+cd kcontrol_gpu_msm
+make
+cd ..
+cp arch/arm/boot/zImage /home/andrew/htc/kernels/ModBubba
+find . -name \*.ko -exec cp '{}' /home/andrew/htc/kernels/ModBubba/modules/ ';'
+git clean -f -d
 
-# Make boot.img
-#echo "Making boot.img"
-#cp arch/arm/boot/zImage .
-#./mkbootimg --kernel zImage --ramdisk $INITRAMFS_DIR --base 80400000 --ramdiskaddr 82000000 --cmdline console=ttyHSL0,115200,n8 -o boot.img
 echo "Done."
