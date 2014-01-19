@@ -50,6 +50,9 @@ modules.builtin
 #
 /debian/
 
+#Ignore the KControl GPU Folder
+kcontrol_gpu_msm/
+
 #
 # git files that we don't want to ignore even it they are dot-files
 #
