@@ -21,11 +21,18 @@ else
 	CONFIG=$1
 fi
 
+export KBUILD_BUILD_VERSION="${KERNEL_NAME}-v${KERNEL_VNUMBER}"
 
 make $1
 echo "Building kernel ${KBUILD_BUILD_VERSION} with configuration $CONFIG"
 make ARCH=arm -j$NB_CPU CROSS_COMPILE=$CROSS_COMPILE
 
+cd kcontrol_gpu_msm
+sed -i '/KERNEL_BUILD := /c\KERNEL_BUILD := ../' Makefile
+make
+cd ..
+cp arch/arm/boot/zImage /home/andrew/htc/kernels/ModBubba/
+find . -name \*.ko -exec cp '{}' /home/andrew/htc/kernels/ModBubba/modules/ ';'
 
 # Make boot.img
 #echo "Making boot.img"
