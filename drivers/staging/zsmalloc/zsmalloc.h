@@ -29,4 +29,3 @@ void zs_unmap_object(struct zs_pool *pool, void *handle);
 u64 zs_get_total_size_bytes(struct zs_pool *pool);
 
 #endif
-
