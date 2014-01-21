@@ -324,11 +324,6 @@ struct msm_camera_sensor_info {
 	int mirror_mode;
 	struct camera_flash_cfg* flash_cfg;
 #endif
-
-	int sensor_cut;
-#ifdef CONFIG_RAWCHIPII
-	int stop_yushanii_first;
-#endif
 };
 
 struct msm_camera_board_info {
