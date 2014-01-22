@@ -1,7 +1,6 @@
 CROSS_COMPILE=/home/andrew/htc/kernels/toolchains/arm-cortex_a15/bin/arm-cortex_a15-linux-gnueabi-
 # INITRAMFS_DIR=ramdisk.gz
-KERNEL_NAME=-IronBorn-
-KERNEL_VNUMBER=0.5
+KERNEL_NAME=3.4.72-IronBorn
 
 # DO NOT MODIFY BELOW THIS LINE
 CURRENT_DIR=`pwd`
@@ -21,7 +20,7 @@ else
 	CONFIG=$1
 fi
 
-export KBUILD_BUILD_VERSION="${KERNEL_NAME}-v${KERNEL_VNUMBER}"
+export KBUILD_BUILD_VERSION="${KERNEL_NAME}"
 
 make $1
 echo "Building kernel ${KBUILD_BUILD_VERSION} with configuration $CONFIG"
