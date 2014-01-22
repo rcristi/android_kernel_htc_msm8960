@@ -665,7 +665,7 @@ err_free_chip:
 	return rc;
 }
 
-static int __exit pm8xxx_tm_remove(struct platform_device *pdev)
+static int __devexit pm8xxx_tm_remove(struct platform_device *pdev)
 {
 	struct pm8xxx_tm_chip *chip = platform_get_drvdata(pdev);
 
@@ -725,7 +725,7 @@ static const struct dev_pm_ops pm8xxx_tm_pm_ops = {
 
 static struct platform_driver pm8xxx_tm_driver = {
 	.probe	= pm8xxx_tm_probe,
-	.remove	= __exit_p(pm8xxx_tm_remove),
+	.remove	= __devexit_p(pm8xxx_tm_remove),
 	.shutdown = pm8xxx_tm_shutdown,
 	.driver	= {
 		.name = PM8XXX_TM_DEV_NAME,
