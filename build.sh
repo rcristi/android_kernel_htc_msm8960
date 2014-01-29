@@ -20,7 +20,7 @@ else
 	CONFIG=$1
 fi
 
-export KBUILD_BUILD_VERSION="${KERNEL_NAME}"
+#export KBUILD_BUILD_VERSION="${KERNEL_NAME}"
 
 make $1
 echo "Building kernel ${KBUILD_BUILD_VERSION} with configuration $CONFIG"

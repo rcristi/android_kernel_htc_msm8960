@@ -54,7 +54,7 @@ modules.builtin
 kcontrol_gpu_msm/
 
 #Ignore build.sh
-/build.sh
+build.sh
 
 #
 # git files that we don't want to ignore even it they are dot-files
