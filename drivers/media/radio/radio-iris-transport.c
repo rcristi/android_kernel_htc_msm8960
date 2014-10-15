@@ -210,16 +210,22 @@ static void __exit radio_hci_smd_exit(void)
 }
 module_exit(radio_hci_smd_exit);
 
-int hci_fm_smd_register(void) {
+int hci_fm_smd_register(void)
+{
 	return 0;
 }
-void hci_fm_smd_deregister(void) {
+
+void hci_fm_smd_deregister(void)
+{
 }
 #else
-int hci_fm_smd_register(void) {
+int hci_fm_smd_register(void)
+{
 	return radio_hci_smd_register_dev(&hs);
 }
-void hci_fm_smd_deregister(void) {
+
+void hci_fm_smd_deregister(void)
+{
 	radio_hci_smd_deregister();
 }
 #endif
