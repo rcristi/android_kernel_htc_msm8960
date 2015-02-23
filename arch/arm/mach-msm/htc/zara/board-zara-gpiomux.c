@@ -38,7 +38,7 @@ static struct gpiomux_setting gpio99_suspended_cfg = {
 	.pull = GPIOMUX_PULL_UP,
 };
 
-static struct gpiomux_setting gsbi10 = {
+static struct gpiomux_setting gsbi9 = {
 	.func = GPIOMUX_FUNC_2,
 	.drv = GPIOMUX_DRV_8MA,
 	.pull = GPIOMUX_PULL_NONE,
@@ -52,7 +52,6 @@ static struct gpiomux_setting cdc_mclk = {
 };
 
 static struct gpiomux_setting audio_auxpcm[] = {
-
 	{
 		.func = GPIOMUX_FUNC_GPIO,
 		.drv = GPIOMUX_DRV_2MA,
@@ -87,7 +86,7 @@ static struct gpiomux_setting audio_auxpcm_input[] = {
 		.func = GPIOMUX_FUNC_GPIO,
 		.drv = GPIOMUX_DRV_2MA,
 		.pull = GPIOMUX_PULL_DOWN,
-		.dir = GPIOMUX_IN,
+                .dir = GPIOMUX_IN,
 	},
 
 	{
@@ -130,7 +129,6 @@ static struct gpiomux_setting atmel_ldo_en_act_cfg = {
 	.pull = GPIOMUX_PULL_DOWN,
 };
 
-#ifdef MSM8930_PHASE_2
 static struct gpiomux_setting hsusb_sus_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
@@ -151,7 +149,6 @@ static struct msm_gpiomux_config msm8930_hsusb_configs[] = {
 		},
 	},
 };
-#endif
 static struct gpiomux_setting mdp_vsync_suspend_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
@@ -169,6 +166,20 @@ static struct gpiomux_setting mdp_vsync_active_cfg = {
 
 static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 	{
+		.gpio      = 12,
+		.settings = {
+			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_sus,
+			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
+		},
+	},
+	{
+		.gpio      = 13,
+		.settings = {
+			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_sus,
+			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
+		},
+	},
+	{
 		.gpio      = 16,
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_sus,
@@ -183,17 +194,17 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 		},
 	},
 	{
-		.gpio      = 24,
+		.gpio      = 95,
 		.settings = {
-			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_sus,
-			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
+			[GPIOMUX_SUSPENDED] = &gsbi9,
+			[GPIOMUX_ACTIVE] = &gsbi9,
 		},
 	},
 	{
-		.gpio      = 25,
+		.gpio      = 96,
 		.settings = {
-			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_sus,
-			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
+			[GPIOMUX_SUSPENDED] = &gsbi9,
+			[GPIOMUX_ACTIVE] = &gsbi9,
 		},
 	},
 	{
@@ -208,20 +219,6 @@ static struct msm_gpiomux_config msm8960_gsbi_configs[] __initdata = {
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_sus,
 			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
-		},
-	},
-	{
-		.gpio      = 73,
-		.settings = {
-			[GPIOMUX_SUSPENDED] = &gsbi10,
-			[GPIOMUX_ACTIVE] = &gsbi10,
-		},
-	},
-	{
-		.gpio      = 74,
-		.settings = {
-			[GPIOMUX_SUSPENDED] = &gsbi10,
-			[GPIOMUX_ACTIVE] = &gsbi10,
 		},
 	},
 	{
@@ -504,10 +501,8 @@ int __init msm8930_init_gpiomux(void)
 
 	if (machine_is_msm8930_mtp() || machine_is_msm8930_fluid() ||
 		machine_is_msm8930_cdp()) {
-#ifdef MSM8930_PHASE_2
 		msm_gpiomux_install(msm8930_hsusb_configs,
 			ARRAY_SIZE(msm8930_hsusb_configs));
-#endif
 	}
 
 
